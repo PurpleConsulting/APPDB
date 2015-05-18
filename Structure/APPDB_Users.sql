@@ -23,7 +23,7 @@ DROP TABLE IF EXISTS `Users`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `Users` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `pseudo` varchar(45) CHARACTER SET utf8 DEFAULT NULL,
   `id_group` int(11) DEFAULT NULL,
   `promo` int(11) DEFAULT NULL,
@@ -32,13 +32,14 @@ CREATE TABLE `Users` (
   `mail` varchar(45) DEFAULT NULL,
   `password` varchar(45) DEFAULT NULL,
   `add_date` date DEFAULT NULL,
-  `id_respo` int(11) DEFAULT NULL,
   `id_post` int(11) DEFAULT NULL,
   `tel` varchar(11) CHARACTER SET utf8 DEFAULT NULL,
+  `isep_no` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`),
-  UNIQUE KEY `speudo_UNIQUE` (`pseudo`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  UNIQUE KEY `speudo_UNIQUE` (`pseudo`),
+  UNIQUE KEY `isep_no_UNIQUE` (`isep_no`)
+) ENGINE=InnoDB AUTO_INCREMENT=125 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -50,4 +51,4 @@ CREATE TABLE `Users` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-05-14  7:20:35
+-- Dump completed on 2015-05-18 11:13:48

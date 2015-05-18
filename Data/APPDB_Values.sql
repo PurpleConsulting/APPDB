@@ -21,7 +21,7 @@
 
 LOCK TABLES `Values` WRITE;
 /*!40000 ALTER TABLE `Values` DISABLE KEYS */;
-INSERT INTO `Values` VALUES (1,'Non Acquis',1),(2,'En cours d\'acquisition',2),(3,'Aquis',3),(7,'Au dela',4);
+INSERT INTO `Values` VALUES (1,'Non Acquis',1),(2,'En cours d\'acquisition',2),(3,'Aquis',3),(4,'Au dela',4);
 /*!40000 ALTER TABLE `Values` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -34,4 +34,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-05-14  7:21:07
+-- Dump completed on 2015-05-18 11:15:10
