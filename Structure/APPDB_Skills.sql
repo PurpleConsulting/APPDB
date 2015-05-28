@@ -24,15 +24,15 @@ DROP TABLE IF EXISTS `Skills`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `Skills` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(45) DEFAULT NULL,
-  `type` varchar(45) DEFAULT NULL,
+  `title` varchar(45) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `type` varchar(45) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
   `id_respo` int(11) DEFAULT NULL,
   `coefficient` int(11) DEFAULT NULL,
   `creation_date` date DEFAULT NULL,
   `modification_date` date DEFAULT NULL,
-  `sub_title` varchar(100) DEFAULT NULL,
+  `sub_title` varchar(100) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -44,4 +44,4 @@ CREATE TABLE `Skills` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-05-18 11:13:40
+-- Dump completed on 2015-05-28 22:16:01

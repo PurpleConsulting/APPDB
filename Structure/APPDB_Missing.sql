@@ -28,7 +28,7 @@ CREATE TABLE `Missing` (
   `id_tutor` int(11) DEFAULT NULL,
   `date` datetime DEFAULT NULL,
   `late` tinyint(1) DEFAULT '0',
-  `supporting` mediumtext,
+  `supporting` mediumtext CHARACTER SET utf8 COLLATE utf8_unicode_ci,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -42,4 +42,4 @@ CREATE TABLE `Missing` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-05-18 11:13:38
+-- Dump completed on 2015-05-28 22:16:01

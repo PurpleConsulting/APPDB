@@ -26,7 +26,7 @@ CREATE TABLE `Delivery` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_owner_group` int(11) DEFAULT NULL,
   `id_deadline` int(11) DEFAULT NULL,
-  `path` varchar(45) DEFAULT NULL,
+  `path` varchar(45) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
   `date` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
@@ -41,4 +41,4 @@ CREATE TABLE `Delivery` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-05-18 11:13:44
+-- Dump completed on 2015-05-28 22:16:03

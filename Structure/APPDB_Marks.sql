@@ -31,8 +31,9 @@ CREATE TABLE `Marks` (
   `date` datetime DEFAULT NULL,
   `group_mark` tinyint(1) DEFAULT NULL,
   `id_tutor` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=131 DEFAULT CHARSET=latin1;
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `mark_owner` (`id_student`,`id_sub_skill`)
+) ENGINE=InnoDB AUTO_INCREMENT=1220 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -44,4 +45,4 @@ CREATE TABLE `Marks` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-05-18 11:13:47
+-- Dump completed on 2015-05-28 22:16:05

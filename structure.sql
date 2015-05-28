@@ -19,19 +19,21 @@
 -- Table structure for table `Deadlines`
 --
 
+USE `APPDB`
+
 DROP TABLE IF EXISTS `Deadlines`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `Deadlines` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `description` mediumtext,
+  `description` mediumtext CHARACTER SET utf8 COLLATE utf8_unicode_ci,
   `date_creation` date DEFAULT NULL,
   `date_limit` datetime DEFAULT NULL,
   `id_createur` int(11) DEFAULT NULL,
   `Status` tinyint(1) DEFAULT NULL,
   `id_group` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=53 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -43,7 +45,7 @@ CREATE TABLE `Deadlines` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-05-18 11:13:42
+-- Dump completed on 2015-05-28 22:16:02
 -- MySQL dump 10.13  Distrib 5.6.19, for osx10.7 (i386)
 --
 -- Host: 91.121.193.238    Database: APPDB
@@ -72,7 +74,7 @@ CREATE TABLE `Delivery` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_owner_group` int(11) DEFAULT NULL,
   `id_deadline` int(11) DEFAULT NULL,
-  `path` varchar(45) DEFAULT NULL,
+  `path` varchar(45) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
   `date` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
@@ -87,7 +89,7 @@ CREATE TABLE `Delivery` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-05-18 11:13:44
+-- Dump completed on 2015-05-28 22:16:03
 -- MySQL dump 10.13  Distrib 5.6.19, for osx10.7 (i386)
 --
 -- Host: 91.121.193.238    Database: APPDB
@@ -114,13 +116,13 @@ DROP TABLE IF EXISTS `Groups`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `Groups` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(45) DEFAULT NULL,
+  `name` varchar(45) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
   `id_tutor` int(11) NOT NULL DEFAULT '0',
-  `class` varchar(45) DEFAULT NULL,
+  `class` varchar(45) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`),
   UNIQUE KEY `name_UNIQUE` (`name`)
-) ENGINE=InnoDB AUTO_INCREMENT=142 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=168 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -132,7 +134,7 @@ CREATE TABLE `Groups` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-05-18 11:13:46
+-- Dump completed on 2015-05-28 22:16:04
 -- MySQL dump 10.13  Distrib 5.6.19, for osx10.7 (i386)
 --
 -- Host: 91.121.193.238    Database: APPDB
@@ -166,8 +168,9 @@ CREATE TABLE `Marks` (
   `date` datetime DEFAULT NULL,
   `group_mark` tinyint(1) DEFAULT NULL,
   `id_tutor` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=131 DEFAULT CHARSET=latin1;
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `mark_owner` (`id_student`,`id_sub_skill`)
+) ENGINE=InnoDB AUTO_INCREMENT=1220 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -179,7 +182,7 @@ CREATE TABLE `Marks` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-05-18 11:13:47
+-- Dump completed on 2015-05-28 22:16:05
 -- MySQL dump 10.13  Distrib 5.6.19, for osx10.7 (i386)
 --
 -- Host: 91.121.193.238    Database: APPDB
@@ -210,7 +213,7 @@ CREATE TABLE `Missing` (
   `id_tutor` int(11) DEFAULT NULL,
   `date` datetime DEFAULT NULL,
   `late` tinyint(1) DEFAULT '0',
-  `supporting` mediumtext,
+  `supporting` mediumtext CHARACTER SET utf8 COLLATE utf8_unicode_ci,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -224,7 +227,7 @@ CREATE TABLE `Missing` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-05-18 11:13:38
+-- Dump completed on 2015-05-28 22:16:01
 -- MySQL dump 10.13  Distrib 5.6.19, for osx10.7 (i386)
 --
 -- Host: 91.121.193.238    Database: APPDB
@@ -251,7 +254,7 @@ DROP TABLE IF EXISTS `Positions`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `Positions` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(45) DEFAULT NULL,
+  `title` varchar(45) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
@@ -266,7 +269,7 @@ CREATE TABLE `Positions` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-05-18 11:13:41
+-- Dump completed on 2015-05-28 22:16:02
 -- MySQL dump 10.13  Distrib 5.6.19, for osx10.7 (i386)
 --
 -- Host: 91.121.193.238    Database: APPDB
@@ -293,15 +296,15 @@ DROP TABLE IF EXISTS `Skills`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `Skills` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(45) DEFAULT NULL,
-  `type` varchar(45) DEFAULT NULL,
+  `title` varchar(45) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `type` varchar(45) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
   `id_respo` int(11) DEFAULT NULL,
   `coefficient` int(11) DEFAULT NULL,
   `creation_date` date DEFAULT NULL,
   `modification_date` date DEFAULT NULL,
-  `sub_title` varchar(100) DEFAULT NULL,
+  `sub_title` varchar(100) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -313,7 +316,7 @@ CREATE TABLE `Skills` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-05-18 11:13:40
+-- Dump completed on 2015-05-28 22:16:01
 -- MySQL dump 10.13  Distrib 5.6.19, for osx10.7 (i386)
 --
 -- Host: 91.121.193.238    Database: APPDB
@@ -341,13 +344,13 @@ DROP TABLE IF EXISTS `Sub_skills`;
 CREATE TABLE `Sub_skills` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_skills` int(11) DEFAULT NULL,
-  `title` varchar(45) DEFAULT NULL,
+  `title` varchar(45) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
   `id_respo` int(11) DEFAULT NULL,
-  `note` mediumtext,
+  `note` mediumtext CHARACTER SET utf8 COLLATE utf8_unicode_ci,
   `creation_date` date DEFAULT NULL,
   `modification_date` date DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -359,7 +362,7 @@ CREATE TABLE `Sub_skills` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-05-18 11:13:37
+-- Dump completed on 2015-05-28 22:16:00
 -- MySQL dump 10.13  Distrib 5.6.19, for osx10.7 (i386)
 --
 -- Host: 91.121.193.238    Database: APPDB
@@ -401,7 +404,7 @@ CREATE TABLE `Users` (
   UNIQUE KEY `id_UNIQUE` (`id`),
   UNIQUE KEY `speudo_UNIQUE` (`pseudo`),
   UNIQUE KEY `isep_no_UNIQUE` (`isep_no`)
-) ENGINE=InnoDB AUTO_INCREMENT=125 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=141 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -413,7 +416,7 @@ CREATE TABLE `Users` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-05-18 11:13:48
+-- Dump completed on 2015-05-28 22:16:05
 -- MySQL dump 10.13  Distrib 5.6.19, for osx10.7 (i386)
 --
 -- Host: 91.121.193.238    Database: APPDB
@@ -442,7 +445,8 @@ CREATE TABLE `Values` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(45) DEFAULT NULL,
   `points` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `points_UNIQUE` (`points`)
 ) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -455,4 +459,4 @@ CREATE TABLE `Values` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-05-18 11:13:45
+-- Dump completed on 2015-05-28 22:16:04

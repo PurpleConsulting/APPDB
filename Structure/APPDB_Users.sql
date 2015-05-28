@@ -39,7 +39,7 @@ CREATE TABLE `Users` (
   UNIQUE KEY `id_UNIQUE` (`id`),
   UNIQUE KEY `speudo_UNIQUE` (`pseudo`),
   UNIQUE KEY `isep_no_UNIQUE` (`isep_no`)
-) ENGINE=InnoDB AUTO_INCREMENT=125 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=141 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -51,4 +51,4 @@ CREATE TABLE `Users` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-05-18 11:13:48
+-- Dump completed on 2015-05-28 22:16:05

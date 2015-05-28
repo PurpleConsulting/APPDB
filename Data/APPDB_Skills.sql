@@ -21,7 +21,7 @@
 
 LOCK TABLES `Skills` WRITE;
 /*!40000 ALTER TABLE `Skills` DISABLE KEYS */;
-INSERT INTO `Skills` VALUES (1,'Travail en groupe',NULL,5,NULL,NULL,NULL,'Agir en acteur dynamique et efficace dans un groupe'),(2,'Communication',NULL,5,NULL,NULL,NULL,'Agir en bon communicant dans un environnement scientifique et technique'),(3,'Conduite de projet',NULL,5,NULL,NULL,NULL,'Conduite de projet'),(4,'Conception/réalisation',NULL,5,NULL,NULL,NULL,'Concevoir et réaliser une application informatique (site web)'),(5,'Professionnel responsable',NULL,5,NULL,NULL,NULL,'Agir en professionnel responsable');
+INSERT INTO `Skills` VALUES (0,'Evaluation croisées',NULL,5,NULL,NULL,NULL,NULL),(1,'Travail en groupe',NULL,5,NULL,NULL,NULL,'Agir en acteur dynamique et efficace dans un groupe'),(2,'Communication',NULL,5,NULL,NULL,NULL,'Agir en bon communicant dans un environnement scientifique et technique'),(3,'Conduite de projet',NULL,5,NULL,NULL,'2015-05-26','Conduite de projet'),(4,'Conception / réalisation',NULL,5,NULL,NULL,'2015-05-25','Concevoir et réaliser une application informatique (site web)'),(5,'Professionnel responsable',NULL,5,NULL,NULL,'2015-05-27','Agir en professionnel responsable');
 /*!40000 ALTER TABLE `Skills` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -34,4 +34,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-05-18 11:15:07
+-- Dump completed on 2015-05-28 22:15:22

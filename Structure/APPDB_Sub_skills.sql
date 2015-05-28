@@ -25,13 +25,13 @@ DROP TABLE IF EXISTS `Sub_skills`;
 CREATE TABLE `Sub_skills` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_skills` int(11) DEFAULT NULL,
-  `title` varchar(45) DEFAULT NULL,
+  `title` varchar(45) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
   `id_respo` int(11) DEFAULT NULL,
-  `note` mediumtext,
+  `note` mediumtext CHARACTER SET utf8 COLLATE utf8_unicode_ci,
   `creation_date` date DEFAULT NULL,
   `modification_date` date DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -43,4 +43,4 @@ CREATE TABLE `Sub_skills` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-05-18 11:13:37
+-- Dump completed on 2015-05-28 22:16:00
