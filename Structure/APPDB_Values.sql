@@ -24,11 +24,11 @@ DROP TABLE IF EXISTS `Values`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `Values` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(45) DEFAULT NULL,
+  `title` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
   `points` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `points_UNIQUE` (`points`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -40,4 +40,4 @@ CREATE TABLE `Values` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-05-28 22:16:04
+-- Dump completed on 2015-05-30 11:15:27

@@ -26,14 +26,14 @@ DROP TABLE IF EXISTS `Deadlines`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `Deadlines` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `description` mediumtext CHARACTER SET utf8 COLLATE utf8_unicode_ci,
+  `description` mediumtext COLLATE utf8_unicode_ci,
   `date_creation` date DEFAULT NULL,
   `date_limit` datetime DEFAULT NULL,
   `id_createur` int(11) DEFAULT NULL,
   `Status` tinyint(1) DEFAULT NULL,
   `id_group` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=53 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=53 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -45,7 +45,7 @@ CREATE TABLE `Deadlines` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-05-28 22:16:02
+-- Dump completed on 2015-05-30 11:15:26
 -- MySQL dump 10.13  Distrib 5.6.19, for osx10.7 (i386)
 --
 -- Host: 91.121.193.238    Database: APPDB
@@ -74,10 +74,10 @@ CREATE TABLE `Delivery` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_owner_group` int(11) DEFAULT NULL,
   `id_deadline` int(11) DEFAULT NULL,
-  `path` varchar(45) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `path` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
   `date` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -89,7 +89,7 @@ CREATE TABLE `Delivery` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-05-28 22:16:03
+-- Dump completed on 2015-05-30 11:15:27
 -- MySQL dump 10.13  Distrib 5.6.19, for osx10.7 (i386)
 --
 -- Host: 91.121.193.238    Database: APPDB
@@ -117,12 +117,13 @@ DROP TABLE IF EXISTS `Groups`;
 CREATE TABLE `Groups` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(45) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
-  `id_tutor` int(11) NOT NULL DEFAULT '0',
+  `id_tutor` int(11) DEFAULT '0',
   `class` varchar(45) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`),
-  UNIQUE KEY `name_UNIQUE` (`name`)
-) ENGINE=InnoDB AUTO_INCREMENT=168 DEFAULT CHARSET=latin1;
+  UNIQUE KEY `name_UNIQUE` (`name`),
+  KEY `idx_tutors_groups` (`id_tutor`)
+) ENGINE=InnoDB AUTO_INCREMENT=173 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -134,7 +135,7 @@ CREATE TABLE `Groups` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-05-28 22:16:04
+-- Dump completed on 2015-05-30 11:15:28
 -- MySQL dump 10.13  Distrib 5.6.19, for osx10.7 (i386)
 --
 -- Host: 91.121.193.238    Database: APPDB
@@ -169,8 +170,15 @@ CREATE TABLE `Marks` (
   `group_mark` tinyint(1) DEFAULT NULL,
   `id_tutor` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `mark_owner` (`id_student`,`id_sub_skill`)
-) ENGINE=InnoDB AUTO_INCREMENT=1220 DEFAULT CHARSET=latin1;
+  UNIQUE KEY `idx_mark_owner` (`id_student`,`id_sub_skill`),
+  KEY `idx_mark_sub_skills` (`id_sub_skill`),
+  KEY `idx_marks_tutors_idx` (`id_tutor`),
+  KEY `idx_marks_values_idx` (`id_value`),
+  CONSTRAINT `key_marks_skills` FOREIGN KEY (`id_sub_skill`) REFERENCES `Sub_skills` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION,
+  CONSTRAINT `key_marks_students` FOREIGN KEY (`id_student`) REFERENCES `Users` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION,
+  CONSTRAINT `key_marks_tutors` FOREIGN KEY (`id_tutor`) REFERENCES `Users` (`id`) ON DELETE SET NULL ON UPDATE NO ACTION,
+  CONSTRAINT `key_marks_values` FOREIGN KEY (`id_value`) REFERENCES `Values` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=1244 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -182,7 +190,7 @@ CREATE TABLE `Marks` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-05-28 22:16:05
+-- Dump completed on 2015-05-30 11:15:28
 -- MySQL dump 10.13  Distrib 5.6.19, for osx10.7 (i386)
 --
 -- Host: 91.121.193.238    Database: APPDB
@@ -213,9 +221,13 @@ CREATE TABLE `Missing` (
   `id_tutor` int(11) DEFAULT NULL,
   `date` datetime DEFAULT NULL,
   `late` tinyint(1) DEFAULT '0',
-  `supporting` mediumtext CHARACTER SET utf8 COLLATE utf8_unicode_ci,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+  `supporting` mediumtext COLLATE utf8_unicode_ci,
+  PRIMARY KEY (`id`),
+  KEY `idx_missings_users` (`id_student`),
+  KEY `idx_missing_tutor` (`id_tutor`),
+  CONSTRAINT `key_missing_tutor` FOREIGN KEY (`id_tutor`) REFERENCES `Users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `key_missings_student` FOREIGN KEY (`id_student`) REFERENCES `Users` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -227,7 +239,7 @@ CREATE TABLE `Missing` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-05-28 22:16:01
+-- Dump completed on 2015-05-30 11:15:24
 -- MySQL dump 10.13  Distrib 5.6.19, for osx10.7 (i386)
 --
 -- Host: 91.121.193.238    Database: APPDB
@@ -254,10 +266,10 @@ DROP TABLE IF EXISTS `Positions`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `Positions` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(45) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `title` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -269,7 +281,7 @@ CREATE TABLE `Positions` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-05-28 22:16:02
+-- Dump completed on 2015-05-30 11:15:25
 -- MySQL dump 10.13  Distrib 5.6.19, for osx10.7 (i386)
 --
 -- Host: 91.121.193.238    Database: APPDB
@@ -296,15 +308,15 @@ DROP TABLE IF EXISTS `Skills`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `Skills` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(45) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
-  `type` varchar(45) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `title` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `type` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
   `id_respo` int(11) DEFAULT NULL,
   `coefficient` int(11) DEFAULT NULL,
   `creation_date` date DEFAULT NULL,
   `modification_date` date DEFAULT NULL,
-  `sub_title` varchar(100) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `sub_title` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -316,7 +328,7 @@ CREATE TABLE `Skills` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-05-28 22:16:01
+-- Dump completed on 2015-05-30 11:15:25
 -- MySQL dump 10.13  Distrib 5.6.19, for osx10.7 (i386)
 --
 -- Host: 91.121.193.238    Database: APPDB
@@ -344,13 +356,15 @@ DROP TABLE IF EXISTS `Sub_skills`;
 CREATE TABLE `Sub_skills` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_skills` int(11) DEFAULT NULL,
-  `title` varchar(45) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `title` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
   `id_respo` int(11) DEFAULT NULL,
-  `note` mediumtext CHARACTER SET utf8 COLLATE utf8_unicode_ci,
+  `note` mediumtext COLLATE utf8_unicode_ci,
   `creation_date` date DEFAULT NULL,
   `modification_date` date DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=latin1;
+  PRIMARY KEY (`id`),
+  KEY `idx_sub_skills_skills` (`id_skills`),
+  CONSTRAINT `id` FOREIGN KEY (`id_skills`) REFERENCES `Skills` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=57 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -362,7 +376,7 @@ CREATE TABLE `Sub_skills` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-05-28 22:16:00
+-- Dump completed on 2015-05-30 11:15:24
 -- MySQL dump 10.13  Distrib 5.6.19, for osx10.7 (i386)
 --
 -- Host: 91.121.193.238    Database: APPDB
@@ -389,22 +403,23 @@ DROP TABLE IF EXISTS `Users`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `Users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `pseudo` varchar(45) CHARACTER SET utf8 DEFAULT NULL,
-  `id_group` int(11) DEFAULT NULL,
+  `pseudo` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `id_group` int(11) DEFAULT '0',
   `promo` int(11) DEFAULT NULL,
   `last_name` varchar(45) CHARACTER SET utf8 DEFAULT NULL,
   `first_name` varchar(45) CHARACTER SET utf8 DEFAULT NULL,
-  `mail` varchar(45) DEFAULT NULL,
-  `password` varchar(45) DEFAULT NULL,
+  `mail` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `password` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
   `add_date` date DEFAULT NULL,
   `id_post` int(11) DEFAULT NULL,
-  `tel` varchar(11) CHARACTER SET utf8 DEFAULT NULL,
-  `isep_no` int(11) DEFAULT NULL,
+  `tel` varchar(11) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `isep_no` int(11) DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`),
   UNIQUE KEY `speudo_UNIQUE` (`pseudo`),
-  UNIQUE KEY `isep_no_UNIQUE` (`isep_no`)
-) ENGINE=InnoDB AUTO_INCREMENT=141 DEFAULT CHARSET=latin1;
+  KEY `idx_users_groups` (`id_group`),
+  CONSTRAINT `key_users_groups` FOREIGN KEY (`id_group`) REFERENCES `Groups` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=205 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -416,7 +431,7 @@ CREATE TABLE `Users` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-05-28 22:16:05
+-- Dump completed on 2015-05-30 11:15:29
 -- MySQL dump 10.13  Distrib 5.6.19, for osx10.7 (i386)
 --
 -- Host: 91.121.193.238    Database: APPDB
@@ -443,11 +458,11 @@ DROP TABLE IF EXISTS `Values`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `Values` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(45) DEFAULT NULL,
+  `title` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
   `points` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `points_UNIQUE` (`points`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -459,4 +474,4 @@ CREATE TABLE `Values` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-05-28 22:16:04
+-- Dump completed on 2015-05-30 11:15:27

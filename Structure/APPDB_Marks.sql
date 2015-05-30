@@ -32,8 +32,15 @@ CREATE TABLE `Marks` (
   `group_mark` tinyint(1) DEFAULT NULL,
   `id_tutor` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `mark_owner` (`id_student`,`id_sub_skill`)
-) ENGINE=InnoDB AUTO_INCREMENT=1220 DEFAULT CHARSET=latin1;
+  UNIQUE KEY `idx_mark_owner` (`id_student`,`id_sub_skill`),
+  KEY `idx_mark_sub_skills` (`id_sub_skill`),
+  KEY `idx_marks_tutors_idx` (`id_tutor`),
+  KEY `idx_marks_values_idx` (`id_value`),
+  CONSTRAINT `key_marks_skills` FOREIGN KEY (`id_sub_skill`) REFERENCES `Sub_skills` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION,
+  CONSTRAINT `key_marks_students` FOREIGN KEY (`id_student`) REFERENCES `Users` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION,
+  CONSTRAINT `key_marks_tutors` FOREIGN KEY (`id_tutor`) REFERENCES `Users` (`id`) ON DELETE SET NULL ON UPDATE NO ACTION,
+  CONSTRAINT `key_marks_values` FOREIGN KEY (`id_value`) REFERENCES `Values` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=1244 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -45,4 +52,4 @@ CREATE TABLE `Marks` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-05-28 22:16:05
+-- Dump completed on 2015-05-30 11:15:28
