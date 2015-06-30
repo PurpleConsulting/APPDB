@@ -25,7 +25,7 @@ DROP TABLE IF EXISTS `Users`;
 CREATE TABLE `Users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `pseudo` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `id_group` int(11) DEFAULT '0',
+  `id_group` int(11) DEFAULT NULL,
   `promo` int(11) DEFAULT NULL,
   `last_name` varchar(45) CHARACTER SET utf8 DEFAULT NULL,
   `first_name` varchar(45) CHARACTER SET utf8 DEFAULT NULL,
@@ -33,14 +33,13 @@ CREATE TABLE `Users` (
   `password` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
   `add_date` date DEFAULT NULL,
   `id_post` int(11) DEFAULT NULL,
-  `tel` varchar(11) COLLATE utf8_unicode_ci DEFAULT NULL,
   `isep_no` int(11) DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`),
   UNIQUE KEY `speudo_UNIQUE` (`pseudo`),
   KEY `idx_users_groups` (`id_group`),
   CONSTRAINT `key_users_groups` FOREIGN KEY (`id_group`) REFERENCES `Groups` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=205 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6695 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -52,4 +51,4 @@ CREATE TABLE `Users` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-05-30 11:15:29
+-- Dump completed on 2015-06-30 22:10:26

@@ -16,13 +16,13 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Dumping data for table `Values`
+-- Dumping data for table `Calendars`
 --
 
-LOCK TABLES `Values` WRITE;
-/*!40000 ALTER TABLE `Values` DISABLE KEYS */;
-INSERT INTO `Values` VALUES (1,'Non Acquis',0,0),(2,'Niveau de Base en cours d\'acquisition',2,0),(3,'Niveau de Base acquis',3,0),(4,'Niveau Intermédiaire en cours d\'acquisition',4,0),(5,'Niveau Intermédiaire acquis',5,0),(20,'Loin',1,1),(21,'Proche',2,1),(22,'Attendu',3,1),(23,'Dépassé',5,1);
-/*!40000 ALTER TABLE `Values` ENABLE KEYS */;
+LOCK TABLES `Calendars` WRITE;
+/*!40000 ALTER TABLE `Calendars` DISABLE KEYS */;
+INSERT INTO `Calendars` VALUES (51,1437),(52,1438),(53,1439),(54,1440),(55,1441),(56,1442),(57,1443),(58,1444),(59,1445),(60,1446),(61,1447),(62,1448),(63,1449),(64,1450),(65,1451),(66,1452);
+/*!40000 ALTER TABLE `Calendars` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -34,4 +34,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-06-30 22:11:00
+-- Dump completed on 2015-06-30 22:10:58

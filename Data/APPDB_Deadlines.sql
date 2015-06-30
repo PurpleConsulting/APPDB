@@ -21,7 +21,6 @@
 
 LOCK TABLES `Deadlines` WRITE;
 /*!40000 ALTER TABLE `Deadlines` DISABLE KEYS */;
-INSERT INTO `Deadlines` VALUES (1,'Livrable de conception','2015-05-05','2015-06-16 23:00:00',5,1,1),(2,'Manuel de déploiement','2015-05-05','2015-06-16 23:00:00',5,1,1),(3,'Livrable de spécification client','2015-05-05','2015-06-20 23:00:00',5,1,1),(45,'test de zovena','2015-05-27','2015-05-15 23:00:00',5,1,125),(46,'test de zovena','2015-05-27','2015-05-15 23:00:00',5,1,126),(47,'test de zovena','2015-05-27','2015-05-31 07:00:00',5,1,127),(48,'test de zovena','2015-05-27','2015-05-31 07:00:00',5,1,128);
 /*!40000 ALTER TABLE `Deadlines` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -34,4 +33,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-05-30  9:12:46
+-- Dump completed on 2015-06-30 22:10:59

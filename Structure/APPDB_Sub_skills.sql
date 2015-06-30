@@ -24,16 +24,16 @@ DROP TABLE IF EXISTS `Sub_skills`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `Sub_skills` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `id_skills` int(11) DEFAULT NULL,
+  `id_skill` int(11) DEFAULT NULL,
   `title` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
   `id_respo` int(11) DEFAULT NULL,
   `note` mediumtext COLLATE utf8_unicode_ci,
   `creation_date` date DEFAULT NULL,
   `modification_date` date DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `idx_sub_skills_skills` (`id_skills`),
-  CONSTRAINT `id` FOREIGN KEY (`id_skills`) REFERENCES `Skills` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=57 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  KEY `idx_sub_skills_skills` (`id_skill`),
+  CONSTRAINT `id` FOREIGN KEY (`id_skill`) REFERENCES `Skills` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=69 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -45,4 +45,4 @@ CREATE TABLE `Sub_skills` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-05-30 11:15:24
+-- Dump completed on 2015-06-30 22:10:19

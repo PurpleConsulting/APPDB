@@ -30,8 +30,11 @@ CREATE TABLE `Deadlines` (
   `id_createur` int(11) DEFAULT NULL,
   `Status` tinyint(1) DEFAULT NULL,
   `id_group` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=53 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `cross` tinyint(1) DEFAULT '0',
+  PRIMARY KEY (`id`),
+  KEY `key_deadline_group_idx` (`id_group`),
+  CONSTRAINT `key_deadline_group` FOREIGN KEY (`id_group`) REFERENCES `Groups` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=236 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -43,4 +46,4 @@ CREATE TABLE `Deadlines` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-05-30 11:15:26
+-- Dump completed on 2015-06-30 22:10:22

@@ -16,14 +16,22 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Dumping data for table `Values`
+-- Table structure for table `Dates`
 --
 
-LOCK TABLES `Values` WRITE;
-/*!40000 ALTER TABLE `Values` DISABLE KEYS */;
-INSERT INTO `Values` VALUES (1,'Non Acquis',0,0),(2,'Niveau de Base en cours d\'acquisition',2,0),(3,'Niveau de Base acquis',3,0),(4,'Niveau Intermédiaire en cours d\'acquisition',4,0),(5,'Niveau Intermédiaire acquis',5,0),(20,'Loin',1,1),(21,'Proche',2,1),(22,'Attendu',3,1),(23,'Dépassé',5,1);
-/*!40000 ALTER TABLE `Values` ENABLE KEYS */;
-UNLOCK TABLES;
+DROP TABLE IF EXISTS `Dates`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `Dates` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_calendar` int(11) NOT NULL,
+  `date` date DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id_UNIQUE` (`id`),
+  KEY `key_date_calendar_idx` (`id_calendar`),
+  CONSTRAINT `key_date_calendar` FOREIGN KEY (`id_calendar`) REFERENCES `Calendars` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=1435 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -34,4 +42,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-06-30 22:11:00
+-- Dump completed on 2015-06-30 22:10:18

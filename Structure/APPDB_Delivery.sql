@@ -26,10 +26,12 @@ CREATE TABLE `Delivery` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_owner_group` int(11) DEFAULT NULL,
   `id_deadline` int(11) DEFAULT NULL,
-  `path` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `path` text COLLATE utf8_unicode_ci,
   `date` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  PRIMARY KEY (`id`),
+  KEY `key_delivery_deadline_idx` (`id_deadline`),
+  CONSTRAINT `key_delivery_deadline` FOREIGN KEY (`id_deadline`) REFERENCES `Deadlines` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -41,4 +43,4 @@ CREATE TABLE `Delivery` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-05-30 11:15:27
+-- Dump completed on 2015-06-30 22:10:23

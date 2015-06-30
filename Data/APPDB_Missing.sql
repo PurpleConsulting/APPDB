@@ -21,7 +21,6 @@
 
 LOCK TABLES `Missing` WRITE;
 /*!40000 ALTER TABLE `Missing` DISABLE KEYS */;
-INSERT INTO `Missing` VALUES (1,1,8,'2015-04-24 09:00:00',0,'Aucun justificatif.'),(2,1,8,'2015-04-24 09:00:00',0,'Absence due à des raisons de santé.'),(3,1,8,'2015-04-24 09:00:00',1,'Retard lié à des problème de transports.'),(4,1,8,'2015-04-24 09:00:00',1,'Aucun justificatif.'),(5,1,8,'2015-04-24 09:00:00',0,'\"Mon chien à manger mon ppt.\"'),(6,1,8,'2015-04-24 09:00:00',1,'\"Embouteillage dans ma résidence\".'),(7,1,8,'2015-03-18 09:00:00',1,'Aucun justificatif.'),(8,1,8,'2015-03-16 09:00:00',1,'test n°1'),(9,1,8,'2015-03-14 09:00:00',0,'test n°2'),(10,1,8,'2015-03-12 09:00:00',1,'test n°3');
 /*!40000 ALTER TABLE `Missing` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -34,4 +33,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-05-30  9:12:44
+-- Dump completed on 2015-06-30 22:10:57
