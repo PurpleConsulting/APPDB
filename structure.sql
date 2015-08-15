@@ -1,3 +1,4 @@
+USE APPDB;
 -- MySQL dump 10.13  Distrib 5.6.19, for osx10.7 (i386)
 --
 -- Host: 91.121.193.238    Database: APPDB
@@ -18,8 +19,6 @@
 --
 -- Table structure for table `Calendars`
 --
-
-USE `APPDB`;
 
 DROP TABLE IF EXISTS `Calendars`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;

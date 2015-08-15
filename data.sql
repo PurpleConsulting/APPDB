@@ -1,3 +1,4 @@
+USE APPDB;
 -- MySQL dump 10.13  Distrib 5.6.19, for osx10.7 (i386)
 --
 -- Host: 91.121.193.238    Database: APPDB
@@ -19,11 +20,8 @@
 -- Dumping data for table `Calendars`
 --
 
-USE `APPDB`;
-
 LOCK TABLES `Calendars` WRITE;
 /*!40000 ALTER TABLE `Calendars` DISABLE KEYS */;
-INSERT INTO `Calendars` VALUES (51,1437),(52,1438),(53,1439),(54,1440),(55,1441),(56,1442),(57,1443),(58,1444),(59,1445),(60,1446),(61,1447),(62,1448),(63,1449),(64,1450),(65,1451),(66,1452);
 /*!40000 ALTER TABLE `Calendars` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
